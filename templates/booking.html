@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Nearby Cafes ☕</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/booking" class="active">Book Table</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section style="max-width: 500px; margin: 40px auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: #fff;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Reserve Your Table</h2>
+        
+        <form action="/booking" method="POST">
+            <!-- Cafe Selection Dropdown -->
+            <label style="display:block; margin-top: 10px; font-weight: bold;">Select Cafe:</label>
+            <select name="cafe_name" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+                {% for cafe in cafes %}
+                    <option value="{{ cafe.name }}" {% if cafe.name == selected_cafe %}selected{% endif %}>
+                        {{ cafe.name }} ({{ cafe.location }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label style="display:block; font-weight: bold;">Your Name:</label>
+            <input type="text" name="name" placeholder="Enter your full name" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+
+            <label style="display:block; font-weight: bold;">Phone Number:</label>
+            <input type="tel" name="phone" placeholder="Enter phone number" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+
+            <label style="display:block; font-weight: bold;">Date & Time:</label>
+            <input type="datetime-local" name="date_time" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc;">
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px; cursor: pointer;">Confirm Booking</button>
+        </form>
+    </section>
+
+</body>
+</html>
